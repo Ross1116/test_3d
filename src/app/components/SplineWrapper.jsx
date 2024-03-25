@@ -4,8 +4,6 @@ import { useRef } from 'react';
 import Spline from '@splinetool/react-spline';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { Timeline } from 'gsap/gsap-core';
-import _ScrollTrigger from 'gsap/ScrollTrigger';
 
 export default function SplineWrapper() {
   const apple = useRef();
@@ -34,53 +32,34 @@ export default function SplineWrapper() {
         scrollTrigger: {
           trigger: "#part2",
           start: "top bottom",
-          end: "bottom center",
+          end: "bottom bottom",
           scrub: true
         }
       })
       .to(apple.current.position, {
         x: apple.current.position.x + 60,
-        z: tree.current.position.z + 20,
+        y: apple.current.position.y - 20 ,
+        z: apple.current.position.z + 40,
         duration: 1,
         ease: "none"
       })
       .to(tree.current.position, {
-        x: tree.current.position.x + 60,
-        y: tree.current.position.y,
+        x: tree.current.position.x + 30,
+        y: tree.current.position.y - 5 ,
         z: tree.current.position.z + 20,
-        duration: 1,
-        ease: "none",
-      }, "<");
-
-      gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#part3",
-          start: "top bottom",
-          end: "bottom center",
-          scrub: true
-        }
-      })
-      .to(apple.current.position, {
-        x: apple.current.position.x - 80,
-        z: apple.current.position.z + 50,
-        duration: 1,
-        ease: "none"
-      })
-      .to(truck.current.position, {
-        x: truck.current.position.x - 50,
-        y: truck.current.position.y + 20,
         duration: 1,
         ease: "none",
       }, "<");
   }
 
   return (
-    <div className='w-full h-dvh'>
+    <div>
       <Spline
         scene="https://prod.spline.design/DwFAYXJyneWm2UEQ/scene.splinecode"
-        onLoad={onLoad}
+        // onLoad={onLoad}
       />
+{/* <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.79/build/spline-viewer.js"></script>
+<spline-viewer loading-anim-type="none" url="https://prod.spline.design/DwFAYXJyneWm2UEQ/scene.splinecode"></spline-viewer> */}
     </div>
   );
 }
